@@ -94,6 +94,34 @@ describe('Calendario Fiscal MX', () => {
     });
   });
 
+  describe('getObligacionesPorRegimen', () => {
+    test('debe retornar obligaciones específicas del régimen general', () => {
+      const obligacionesGeneral = getObligacionesPorRegimen('general', 2024, 1);
+      
+      expect(Array.isArray(obligacionesGeneral)).toBe(true);
+      obligacionesGeneral.forEach(obligacion => {
+        expect(obligacion.regimen).toBe('general');
+      });
+    });
+
+    test('debe retornar obligaciones específicas de personas físicas', () => {
+      const obligacionesPF = getObligacionesPorRegimen('persona_fisica', 2024, 1);
+      
+      expect(Array.isArray(obligacionesPF)).toBe(true);
+      obligacionesPF.forEach(obligacion => {
+        expect(obligacion.regimen).toBe('persona_fisica');
+        expect(obligacion.personaTipo).toBe('fisica');
+      });
+    });
+
+    test('debe manejar regímenes no existentes', () => {
+      const obligacionesInvalidas = getObligacionesPorRegimen('inexistente', 2024, 1);
+      
+      expect(Array.isArray(obligacionesInvalidas)).toBe(true);
+      // Debe usar el régimen general por defecto
+    });
+  });
+
   describe('getEstadisticasObligaciones', () => {
     test('debe retornar estadísticas completas del año', () => {
       const estadisticas = getEstadisticasObligaciones(2024);

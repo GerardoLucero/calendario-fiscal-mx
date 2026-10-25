@@ -39,13 +39,15 @@ console.log(proximas);
 // [
 //   {
 //     nombre: 'Declaración mensual de IVA',
-//     fechaLimite: '2024-01-17',
+//     fechaLimite: '2026-11-17',
 //     tipo: 'declaracion',
 //     regimen: 'general',
 //     diasRestantes: 5
 //   }
 // ]
 ```
+
+> Las fechas límite se calculan como regla (día 17 del mes siguiente, 31 de marzo y 30 de abril para las declaraciones anuales) y **no** se recorren por fines de semana o días inhábiles. Confirma siempre la fecha en el SAT.
 
 ## Obligaciones fiscales principales
 
